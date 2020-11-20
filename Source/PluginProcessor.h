@@ -91,14 +91,14 @@ struct WaveTableVoice : public juce::SynthesiserVoice
 
             auto frac = currentIndex - (float)index0;
 
-            auto value0 = (waveTables[currentTableOsc1][index0] * osc1IsActive * gain1
-                + waveTables[currentTableOsc2][index0] * osc2IsActive * gain2
-                + waveTables[currentTableOsc3][index0] * osc3IsActive * gain3
-                + rand.nextFloat() * noiseIsActive * noiseGain) / numOscillators;
-            auto value1 = (waveTables[currentTableOsc1][index1] * osc1IsActive * gain1
-                + waveTables[currentTableOsc2][index1] * osc2IsActive * gain2
-                + waveTables[currentTableOsc3][index1] * osc3IsActive * gain3
-                + rand.nextFloat() * noiseIsActive * noiseGain) / numOscillators;
+            auto value0 = (double)waveTables[currentTableOsc1][index0] * osc1IsActive * gain1
+                + (double) waveTables[currentTableOsc2][index0] * osc2IsActive * gain2
+                + (double) waveTables[currentTableOsc3][index0] * osc3IsActive * gain3
+                + (double) rand.nextFloat() * noiseIsActive * noiseGain / numOscillators;
+            auto value1 = (double) waveTables[currentTableOsc1][index1] * osc1IsActive * gain1
+                + (double) waveTables[currentTableOsc2][index1] * osc2IsActive * gain2
+                + (double) waveTables[currentTableOsc3][index1] * osc3IsActive * gain3
+                + (double) rand.nextFloat() * noiseIsActive * noiseGain / numOscillators;
 
             currentSample = value0 + frac * ((double)value1 - value0);
 
